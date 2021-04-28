@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+        }
+
+        button {
+            --light: white;
+            --primary: #e62427;
+            --bezel-color: var(--primary);
+            --bezel-width: 3;
+            --bezel-radius: 10px 0 10px 0;
+            font-family: sans-serif;
+            font-weight: bold;
+            color: var(--light);
+            background-color: var(--primary);
+            border: none;
+            padding: 1.2em 2rem;
+            min-width: 150px;
+            text-transform: uppercase;
+            cursor: pointer;
+            background-image: paint(BezelFill);
+            outline: none;
+        }
+
+        button:first-child {
+            margin-right: 1rem;
+        }
+
+        button.stroke {
+            --primary: white;
+            background-color: unset;
+            background-image: paint(BezelStroke);
+        }
+
+        button.stroke:hover,
+        button.stroke:active {
+            --primary: rgba(255, 255, 255, 0.63);
+        }
+
+        button.filled {
+            background-color: unset;
+            background-image: paint(BezelFill);
+        }
+
+        button.filled:hover,
+        button.filled:active  {
+            --primary: #c41d20;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button class="filled">See More</button>
+    <button class="stroke">Aboute</button>
+
+    <script>
+        window.CSS.paintWorklet.addModule('BezelFill.js');
+        window.CSS.paintWorklet.addModule('BezelStroke.js');
+    </script>
+</body>
+</html>
